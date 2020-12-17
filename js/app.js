@@ -20,12 +20,12 @@
 const navList = document.querySelector('#navbar__list');
 const sections = document.querySelectorAll('section');
 
-
 /**
  * End Global Variables
  * Start Helper Functions
  * 
  */
+
 // Remove The Active Class for sections
 function removeActiveClass() {
     sections.forEach((section) => {
@@ -38,22 +38,29 @@ function addActiveClass(section) {
     section.classList.add('your-active-class')
 }
 
-
 // Get The Section in the view port
 
 function isScrolledInView(section) {
+    // the code and method below returns the position of each section relative to viewport
     const { top, bottom } = section.getBoundingClientRect()
+
     let isVisible
         //This if is used to make the function mobile friendly 
     if (window.innerWidth >= 450) {
+        /*
+        ///Explaining the condition of this code
+        ///scrolling up
+        when the top(start) of section + 100px is in viewport then it will add the active class to section you scrolling to
+        
+        ///scrolling down 
+        when the bottom(end) of section is not visible by 200px in viewport then it will add the active class to section you scrolling to
+        */
         isVisible = (top + 100 >= 0) && (bottom - 200 <= window.innerHeight)
     } else {
         isVisible = top + 200 < window.innerHeight && bottom >= 0
     }
     return isVisible;
 }
-
-
 
 /**
  * End Helper Functions
@@ -71,12 +78,6 @@ const buildNav = () => {
     })
 }
 
-
-
-
-
-
-
 // Add class 'active' to section when near top of viewport
 
 function getViewed() {
@@ -90,26 +91,16 @@ function getViewed() {
     })
 }
 
-
-// Scroll to anchor ID using scrollTO event
-
-
 /**
  * End Main Functions
  * Begin Events
  * 
  */
 
-// Build menu 
-
-// Scroll to section on link click
-
 // Set sections as active
-
-
-
-//This is an 
+// window will event handle onscroll event 
+// every time you scroll getViewed will be called
 window.onscroll = () => getViewed()
 
-
+// calling build function to build the list tags
 buildNav()
