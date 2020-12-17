@@ -17,7 +17,7 @@
  * Define Global Variables
  * 
  */
-const navList = document.querySelector('.navbar__list');
+const navList = document.querySelector('#navbar__list');
 const sections = document.querySelectorAll('section');
 
 
@@ -42,13 +42,13 @@ function addActiveClass(section) {
 // Get The Section in the view port
 
 function isScrolledInView(section) {
-    const { top, bottom } = section.getBoundingClientRect();
-    let isVisible;
-    //This if is used to make the function mobile friendly 
+    const { top, bottom } = section.getBoundingClientRect()
+    let isVisible
+        //This if is used to make the function mobile friendly 
     if (window.innerWidth >= 450) {
-        isVisible = (top + 100 >= 0) && (bottom - 200 <= window.innerHeight);
+        isVisible = (top + 100 >= 0) && (bottom - 200 <= window.innerHeight)
     } else {
-        isVisible = top + 200 < window.innerHeight && bottom >= 0;
+        isVisible = top + 200 < window.innerHeight && bottom >= 0
     }
     return isVisible;
 }
@@ -62,6 +62,18 @@ function isScrolledInView(section) {
  */
 
 // build the nav
+
+const buildNav = () => {
+    sections.forEach((section) => {
+        let secId = section.id
+        let secData = section.dataset.nav
+        navList.innerHTML += `<li><a class="menu__link" href="#${secId}">${secData}</a></li>`
+    })
+}
+
+
+
+
 
 
 
@@ -96,5 +108,8 @@ function getViewed() {
 
 
 
-
+//This is an 
 window.onscroll = () => getViewed()
+
+
+buildNav()
