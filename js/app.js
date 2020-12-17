@@ -26,19 +26,19 @@ const sections = document.querySelectorAll('section');
  * 
  */
 
-// Remove The Active Class for sections
+// Remove The Active Class for sections and list
 function removeActiveClass() {
     sections.forEach((section) => {
         section.classList.remove('your-active-class')
         activeSectionIndex = section.dataset.nav.split(' ')[1]
         navList.childNodes[activeSectionIndex - 1].classList.remove('list-active-class')
-
     })
 
 }
 
 console.log();
-// Add The Active Class for sections
+
+// Add The Active Class for sections and list
 function addActiveClass(section) {
     section.classList.add('your-active-class')
     activeSectionIndex = section.dataset.nav.split(' ')[1]
@@ -85,12 +85,15 @@ const buildNav = () => {
     })
 }
 
-// Add class 'active' to section when near top of viewport
 
 function getViewed() {
     let oldSection
     sections.forEach((section) => {
+        // assign the active section to oldSection 
         (section.className) ? oldSection = section: null;
+        // if a section in view and old section(the current active section) is not the same as section in view remove classes and add class to section
+        /// I used (&& oldSection != section) 
+        /// for better performance so it does not repeat removing and adding class to same section in view
         if (isScrolledInView(section) && oldSection != section) {
             removeActiveClass()
             addActiveClass(section)
