@@ -30,12 +30,19 @@ const sections = document.querySelectorAll('section');
 function removeActiveClass() {
     sections.forEach((section) => {
         section.classList.remove('your-active-class')
+        activeSectionIndex = section.dataset.nav.split(' ')[1]
+        navList.childNodes[activeSectionIndex - 1].classList.remove('list-active-class')
+
     })
+
 }
 
+console.log();
 // Add The Active Class for sections
 function addActiveClass(section) {
     section.classList.add('your-active-class')
+    activeSectionIndex = section.dataset.nav.split(' ')[1]
+    navList.childNodes[activeSectionIndex - 1].classList.add('list-active-class')
 }
 
 // Get The Section in the view port
