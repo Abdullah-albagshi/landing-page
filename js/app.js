@@ -17,8 +17,10 @@
  * Define Global Variables
  * 
  */
-const navList = document.querySelector('#navbar__list');
-const sections = document.querySelectorAll('section');
+const navList = document.querySelector('#navbar__list')
+const sections = document.querySelectorAll('section')
+const navMenu = document.querySelector('.navbar__menu')
+
 
 /**
  * End Global Variables
@@ -103,6 +105,16 @@ function getViewed() {
         }
     })
 }
+
+navMenu.addEventListener('click', (e) => {
+    e.preventDefault()
+    if(e.target.className !== 'menu__link' ) return null;
+	let listHashSec = e.target.hash.split('#')[1]
+	section = document.getElementById(listHashSec)
+	section.scrollIntoView({
+		behavior: 'smooth',
+	})
+})
 
 /**
  * End Main Functions
