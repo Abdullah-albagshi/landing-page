@@ -5,7 +5,7 @@
 * [Description](#Description)
 * [Technologies](#Technologies)
 * [Setup](#Setup)
-* [Starter-Code](#Starter Code)
+* [Starter-Code](#Starter-Code)
 
 
 ## Description
