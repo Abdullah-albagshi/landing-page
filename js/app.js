@@ -36,7 +36,6 @@ function removeActiveClass() {
 
 }
 
-console.log();
 
 // Add The Active Class for sections and list
 function addActiveClass(section) {
@@ -78,10 +77,14 @@ function isScrolledInView(section) {
 // build the nav
 
 const buildNav = () => {
-    sections.forEach((section) => {
+    sections.forEach((section,index) => {
         let secId = section.id
         let secData = section.dataset.nav
-        navList.innerHTML += `<li><a class="menu__link" href="#${secId}">${secData}</a></li>`
+        if(index===0){
+            navList.innerHTML += `<li class='list-active-class'><a class="menu__link"  href="#${secId}">${secData}</a></li>`    
+        }else{
+            navList.innerHTML += `<li><a class="menu__link" href="#${secId}">${secData}</a></li>`
+        }
     })
 }
 
